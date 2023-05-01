@@ -1,26 +1,21 @@
 from PIL import Image
+import os
 
 
 def decoding_an_image(path):
     # Open the image
-    try:
+    if os.path.exists(path):
         img = Image.open(path)
-    except:
+        width = img.width
+        height = img.height
+
+        my_string = ''.join([chr(row) for column in range(0, width) for row in range(0, height)
+                            if img.getpixel((column, row)) == 1])
+
+        return my_string
+    else:
         print("Wrong path!")
-        return
-    width = img.width
-    height = img.height
-
-    my_string = ''
-    # Goes over all pixels
-    for i in range(0, width):
-        for j in range(0, height):
-            # Check if pixel is black
-            if img.getpixel((i, j)) == 1:
-                # Convert the line number of black pixel to character by ASCII value
-                my_string += chr(j)
-
-    return my_string
 
 
-print(decoding_an_image('code.png'))
+if __name__ == "__main__":
+    print(decoding_an_image('code1.png'))
