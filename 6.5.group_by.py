@@ -1,8 +1,9 @@
 def group_by(func, iterable):
-    mydict = {}
+    dictionary = {}
     for part in iterable:
-        mydict.setdefault(func(part), []).append(part)
-    return mydict
+        dictionary.setdefault(func(part), []).append(part)
+    return dictionary
 
 
-print(group_by(len, ['hi', 'bye', 'yo', 'try']))
+if __name__ == "__main__":
+    print(group_by(len, ['hi', 'bye', 'yo', 'try']))
